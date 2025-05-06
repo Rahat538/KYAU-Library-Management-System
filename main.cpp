@@ -38,7 +38,7 @@ void adminPanel() {
         cout << endl << "ADMIN MENU" << endl;
         cout << "1. Add a new book" << endl;
         cout << "2. View all books" << endl;
-        cout << "3. View all members" << endl;  // New option
+        cout << "3. View all members" << endl;  
         cout << "4. Back to Main Menu" << endl;
         cout << "Enter your choice : ";
         int choice;
@@ -55,7 +55,7 @@ void adminPanel() {
                 viewAllMembers();
                 break;
             case 4:
-                return; // Return to main menu
+                return; 
             default:
                 cout << "Invalid choice! Please try again." << endl;
         }
@@ -65,11 +65,9 @@ void adminPanel() {
 void registerMember() {
     cout << "\nSTUDENT REGISTRATION\n";
     string studentName, studentId;
-
-    // Get name with validation
     do {
         cout << "Enter your name: ";
-        cin.ignore();  // Clear any previous newline characters
+        cin.ignore();  
         getline(cin, studentName);
 
         if (studentName.empty()) {
@@ -77,7 +75,6 @@ void registerMember() {
         }
     } while (studentName.empty());
 
-    // Get ID with validation
     do {
         cout << "Enter your ID: ";
         getline(cin, studentId);
