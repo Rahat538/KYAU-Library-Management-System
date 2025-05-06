@@ -66,12 +66,26 @@ void registerMember() {
     cout << "\nSTUDENT REGISTRATION\n";
     string studentName, studentId;
 
-    cout << "Enter your name: ";
-    cin.ignore();
-    getline(cin, studentName);
+    // Get name with validation
+    do {
+        cout << "Enter your name: ";
+        cin.ignore();  // Clear any previous newline characters
+        getline(cin, studentName);
 
-    cout << "Enter your ID: ";
-    getline(cin, studentId);
+        if (studentName.empty()) {
+            cout << "Name cannot be empty. Please try again.\n";
+        }
+    } while (studentName.empty());
+
+    // Get ID with validation
+    do {
+        cout << "Enter your ID: ";
+        getline(cin, studentId);
+
+        if (studentId.empty()) {
+            cout << "ID cannot be empty. Please try again.\n";
+        }
+    } while (studentId.empty());
 
     ofstream out("members.txt", ios::app);
     if (out) {
@@ -146,7 +160,7 @@ void about() {
     cout << "----------------------------------------\n";
     cout << "Innovating for better library experiences\n";
     cout << "Contact: coderaiders@kyau.edu\n";
-    cout << "� 2025 Team CodeRaiders - All Rights Reserved\n";
+    cout << "© 2025 Team CodeRaiders - All Rights Reserved\n";
     cout << "----------------------------------------\n";
 }
 
