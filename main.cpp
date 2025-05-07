@@ -108,7 +108,7 @@ void addBook() {
             cout << "Error: Book name cannot be empty!\n";
         }
     } while (bookName.empty());
-    
+
     do {
         cout << "Author name: ";
         getline(cin, authorName);
