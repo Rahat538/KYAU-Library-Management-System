@@ -97,20 +97,26 @@ void registerMember() {
 }
 
 void addBook() {
-    ofstream out("books.txt", ios::app);
-    if (!out) {
-        cout << "Error opening file!" << endl;
-        return;
-    }
     cout << "\nADD NEW BOOK" << endl;
     string bookName, authorName;
-    cout << "Book name: ";
-    cin.ignore();
-    getline(cin, bookName);
-    cout << "Author name: ";
-    getline(cin, authorName);
 
-    // Count existing books to get the next number
+    // Validate book name (reject empty input)
+    do {
+        cout << "Book name: ";
+        getline(cin, bookName);  // No need for cin.ignore() here
+        if (bookName.empty()) {
+            cout << "Error: Book name cannot be empty!\n";
+        }
+    } while (bookName.empty());
+    
+    do {
+        cout << "Author name: ";
+        getline(cin, authorName);
+        if (authorName.empty()) {
+            cout << "Error: Author name cannot be empty!\n";
+        }
+    } while (authorName.empty());
+
     ifstream in("books.txt");
     int count = 0;
     string line;
@@ -119,9 +125,13 @@ void addBook() {
     }
     in.close();
 
-    // Save book and author names
-    out << (count+1) << ". " << bookName << " by " << authorName << endl;
-    cout << "\nBook added successfully as: " << (count+1) << ". " << bookName << " by " << authorName << endl;
+    ofstream out("books.txt", ios::app);
+    if (out) {
+        out << (count + 1) << ". " << bookName << " by " << authorName << endl;
+        cout << "\nBook added successfully as: " << (count + 1) << ". " << bookName << " by " << authorName << endl;
+    } else {
+        cout << "Error saving book to file!\n";
+    }
     out.close();
 }
 
